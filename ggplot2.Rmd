@@ -31,5 +31,10 @@ mass <- read_csv("https://raw.githubusercontent.com/OHI-Science/data-science-tra
 
 head(ca)
 ggplot(data = ca) +
-  geom_point(aes(x = year, y = visitors))
+  geom_point(aes(x = year, y = visitors, color =   park_name)) +
+  labs( x = "Year",
+        y = "Visitation",
+        title = "California National Park Visitation") +
+        theme_bw() +
+        theme(legend.title = element_blank())
 
