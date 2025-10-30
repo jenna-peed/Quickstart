@@ -38,3 +38,18 @@ ggplot(data = ca) +
         theme_bw() +
         theme(legend.title = element_blank())
 
+ggplot(data = se) +
+  geom_point(aes(x = year, y = visitors, color = state)) +
+  labs(x = "Year", y = "Visitation", title = "Southeast States National Park Visitation") +
+  theme_grey()
+
+# 2. & 3.
+ggplot(data = se) +
+  geom_point(aes(x = year, y = visitors, color = state)) +
+  labs(x = "Year",
+       y = "Visitation",
+       title = "Southeast States National Park Visitation") +
+  theme_light() +
+  theme(legend.title = element_blank(),
+        axis.text.x = element_text(angle = 45, hjust = 1, size = 14))
+
