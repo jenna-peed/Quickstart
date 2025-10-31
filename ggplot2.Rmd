@@ -104,11 +104,31 @@ ggplot(data = visit_16, aes(x = state)) +
 ggplot(data = visit_16, aes(x = state, y = visitors, fill = park_name)) +
   geom_bar(stat = "identity")
 
-ggplot(data = mass, aes(x = type)) +
+my_plot <- ggplot(data = mass, aes(x = type)) +
   geom_bar() +
   labs(x = "Type", y = "Number of Parks in MA") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 7))
 
+#Saving Plots
+ggsave("MA Parks.png", my_plot, width = 15, height = 10)
 
+#More plotting packages
+install.packages("plotly")
+library(plotly)
+
+ggplotly(my_plot)
+
+acad_vis <- ggplot(data = acadia, aes(x = year, y = visitors)) + 
+  geom_point() +
+  geom_line() +
+  geom_smooth(color = "red") +
+  labs(title = "Acadia National Park Visitation",
+       y = "Visitation",
+       x = "Year") +
+  theme_bw()
+
+ggplotly(acad_vis)
+
+ggsave("Acadia Visitation.png", acad_vis, width = 15, height = 10)
 
