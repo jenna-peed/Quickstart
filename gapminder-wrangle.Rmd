@@ -72,5 +72,46 @@ gapminder %>%
   filter(continent == "Asia", year ==2007) %>% 
   mutate(popThousands = pop/1000) %>% 
   select(country, year, popThousands)
-  
+ 
+#group_by()
+gapminder %>% 
+  filter(year == 2002) %>% 
+  group_by(continent) %>% 
+  mutate(cont_pop = sum(pop))
+
+gapminder %>% 
+  group_by(continent) %>% 
+  summarize(cont_pop = sum(pop)) %>% 
+  ungroup()
+
+gapminder %>% 
+  group_by(continent, year) %>% 
+  summarize(cont_pop = sum(pop))
+
+gapminder %>% 
+  group_by(continent, year) %>% 
+  summarize(cont_pop = sum(pop)) %>% 
+  arrange(year)
+
+gapminder %>% 
+  mutate(gdp = pop * gdpPercap) %>% 
+  group_by(continent) %>% 
+  mutate(max_gdp = max(gdp)) %>% 
+  filter(gdp == max_gdp)
+
+asia_life_exp <- gapminder %>% 
+  filter(continent == "Asia") %>% 
+  group_by(country) %>% 
+  filter(lifeExp == max(lifeExp)) %>% 
+  arrange(year)
+
+## gapminder-wrangle.R --- baseR
+## J. Lowndes lowndes@nceas.ucsb.edu
+
+
+gapminder <- read.csv('https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/gapminder.csv', stringsAsFactors = FALSE) 
+x1  <- gapminder[ , c('country', 'year', 'pop', 'gdpPercap') ]# subset columns
+mex <- x1[x1$country == "Mexico", ] # subset rows
+mex$gdp <- mex$pop * mex$gdpPercap # add new columns
+mex$max_gdp <- max(mex$gdp)
   
