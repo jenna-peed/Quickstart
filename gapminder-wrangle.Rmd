@@ -1,0 +1,53 @@
+---
+title: "Gapminder Wrangle"
+author: "Jenna Peed"
+date: "2025-10-31"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+install.packages("tidyverse")
+
+library(tidyverse)
+
+gapminder <- readr::read_csv('https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/gapminder.csv')
+
+head(gapminder) #shows first 6 rows
+tail(gapminder) #shows last 6 rows
+
+head(gapminder, 10) #shows first 10 rows
+
+str(gapminder) #shows structure
+
+ncol(gapminder) #number of columns
+nrow(gapminder) #number of rows
+
+summary(gapminder) #statistical overview
+
+install.packages('skimr')
+library(skimr)
+
+skim(gapminder)
+
+head(gapminder$lifeExp) #First rows of lifeExp column
+
+#Dplyr Basics
+##Main dplyr functions
+###filter(): pick observations by values
+###select(): pick variables by names
+###mutate(): create new variables with functions of existing variables
+###summarise(): collapse many values down to single summary
+###arrange(): reorder rows
+
+filter(gapminder, lifeExp < 29) #rows with life expentency less than 29
+
+filter(gapminder, country == "Mexico")
+
+filter(gapminder, country %in% c("Mexico", "Peru"))
+
+select(gapminder, year, country, lifeExp)
+select(gapminder, -continent, -lifeExp)
+
