@@ -51,3 +51,26 @@ filter(gapminder, country %in% c("Mexico", "Peru"))
 select(gapminder, year, country, lifeExp)
 select(gapminder, -continent, -lifeExp)
 
+gap_cambodia <- filter(gapminder, country == "Cambodia")
+gap_cambodia2 <- select(gap_cambodia, -continent, -lifeExp)
+
+# %>% Operator
+## Shortcut: Ctrl + Shift + M
+gapminder %>%  head()
+
+gap_cambodia <- gapminder %>%  filter(country =="Cambodia")
+gap_cambodia2 <- gap_cambodia %>% select(-continent, -lifeExp)
+
+gap_cambodia <- gapminder %>% 
+  filter(country == "Cambodia") %>% 
+  select(-continent, -lifeExp)
+
+gapminder %>% 
+  mutate(gdp = pop * gdpPercap)
+
+gapminder %>% 
+  filter(continent == "Asia", year ==2007) %>% 
+  mutate(popThousands = pop/1000) %>% 
+  select(country, year, popThousands)
+  
+  
